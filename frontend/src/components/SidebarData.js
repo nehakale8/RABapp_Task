@@ -21,5 +21,11 @@ export const SidebarData = [
     path: '/products',
     icon: <IoIcons.IoMdPeople />,
     cName: 'nav-text'
+  },
+  {
+    title: 'Map',
+    path: '/map',
+    icon: <FaIcons.FaLocationArrow />,
+    cName: 'nav-text'
   }
 ];
