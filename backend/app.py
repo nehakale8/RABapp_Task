@@ -58,6 +58,19 @@ def format_popu(event):
     return {"id": event.id, "address": event.address}
 
 
+def format_move(event):
+    return {
+        "id": event.id,
+        "company": event.company,
+        "reason": event.reason,
+        "species": event.species,
+        "origin_premise_id": event.origin_premise_id,
+        "dest_premise_id": event.dest_premise_id,
+        "moved_count": event.moved_count,
+        "start_date": event.start_date,
+    }
+
+
 @app.route("/")
 def hello():
     return "hi"
@@ -109,6 +122,16 @@ def edit_event(id):
     event.update(dict(address=address))
     db.session.commit()
     return {"event": format_popu(event.one())}
+
+
+@app.route("/movements", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_movements():
+    events = Movements.query.order_by(Movements.id.asc()).all()
+    event_list = []
+    for event in events:
+        event_list.append(format_move(event))
+    return {"events": event_list}
 
 
 if __name__ == "__main__":
