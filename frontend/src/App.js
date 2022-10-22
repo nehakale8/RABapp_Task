@@ -1,23 +1,127 @@
-import logo from './logo.svg';
+import {useEffect, useState} from "react";
+import axios from "axios"
+import {format} from "date-fns";
+
 import './App.css';
 
+const baseUrl="http://localhost:5000"
 function App() {
+  const[address, setAddress]=useState("");
+  const[editAddress, setEditAddress]=useState("");
+  const[eventsList, setEventsList]=useState([]);
+  const[eventId, setEventId]=useState(null);
+
+  const fetchEvents=async()=>{
+    const data=await axios.get(`${baseUrl}/events`)
+    const {events}=data.data
+    setEventsList(events);
+  }
+
+  const handleChange=(e, field)=>{
+    if (field=="edit"){
+      setEditAddress(e.target.value);
+    }else{
+      setAddress(e.target.value);
+    }
+    
+  }
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    try{
+      if (editAddress){
+        const data=await axios.put(`${baseUrl}/events/${eventId}`, {address:editAddress});
+        const updatedEvent=data.data.event;
+        const updatedList=eventsList.map(event=>{
+          if (event.id==eventId){
+            return event=updatedEvent
+          }
+          return event
+        })
+        setEventsList(updatedList)
+      }
+      else{
+        const data=await axios.post(`${baseUrl}/events`, {address})
+        setEventsList([...eventsList, data.data]);
+      }
+      setAddress('');
+      setEditAddress('');
+      setEventId(null);
+
+    }catch(err){
+      console.error(err.message);
+    }
+  }
+
+  const handleDelete=async(id)=>{
+    try{
+      await axios.delete(`${baseUrl}/events/${id}`)
+      const updatedList =eventsList.filter(event=>event.id!==id)
+      setEventsList(updatedList);
+
+    }catch(err){
+      console.error(err.message);
+    }
+  }
+
+  const toggleEdit=(event)=>{
+    setEventId(event.id);
+    setEditAddress(event.address);
+  }
+
+  useEffect(()=>{
+    fetchEvents();
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="address">Address</label>
+          <input
+            onChange={(e)=>handleChange(e,'description')}
+            type="text"
+            name="address"
+            id="address"
+            value={address}
+            placeholder="Address of event"
+          />
+          <button type='submit'>Submit</button>
+        </form>
+      </section>
+      <section>
+        <ul>
+          {
+            eventsList.map(event=>{
+              if(eventId==event.id){ 
+                return(
+                  <li>
+                  <form onSubmit={handleSubmit} key={event.id}>
+                    <input
+                      onChange={(e)=>handleChange(e, 'edit')}
+                      type="text"
+                      name="editAddress"
+                      id="editAddress"
+                      value={editAddress}
+                    />
+                    <button type="submit">Submit</button>
+                  </form>
+                </li>
+                )
+              }
+              else{
+                return(
+                  <li style={{display:"flex"}} key={event.id}>
+                    {event.id}  = {event.address}
+                    <button onClick={()=>toggleEdit(event)}>Edit</button>
+                    <button onClick={()=>handleDelete(event.id)}>Delete</button>
+                  </li>
+                )
+              }
+            })
+          }
+        </ul>
+      </section>
     </div>
   );
 }

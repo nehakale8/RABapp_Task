@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask import current_app
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.config[
@@ -12,6 +12,8 @@ db = SQLAlchemy(app)
 with app.app_context():
     print(current_app.name)
     db.init_app(app)
+
+CORS(app, support_credentials=True)
 
 
 class Movements(db.Model):
@@ -45,8 +47,7 @@ class Population(db.Model):
     postalcode = db.Column(db.Integer)
     total_animal_count = db.Column(db.Integer)
 
-    def __init__(self, id, address) -> None:
-        self.id = id
+    def __init__(self, address) -> None:
         self.address = address
 
     def __repr__(self) -> str:
@@ -66,8 +67,8 @@ def hello():
 @app.route("/events", methods=["POST"])
 def create_event():
     address = request.json["address"]
-    id = request.json["id"]
-    event = Population(id, address)
+    # id = request.json["id"]
+    event = Population(address)
     db.session.add(event)
     db.session.commit()
     return format_popu(event)
@@ -92,6 +93,7 @@ def get_event(id):
 
 # delete event
 @app.route("/events/<id>", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
 def delete_event(id):
     event = Population.query.filter_by(id=id).one()
     db.session.delete(event)
