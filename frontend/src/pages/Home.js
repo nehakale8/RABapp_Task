@@ -27,7 +27,6 @@ function Home() {
     }else{
       setAddress(e.target.value);
     }
-    
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -91,7 +90,6 @@ function Home() {
             placeholder="Address of event"
           />
           <Button variant="contained" type='submit'>Submit</Button>
-          {/* <button type='submit'>Submit</button> */}
         </form>
       </section>
       <section>
@@ -109,8 +107,7 @@ function Home() {
                       id="editAddress"
                       value={editAddress}
                     />
-                    <Button variant="contained" type='submit'>Submit</Button>
-                    {/* <button type="submit">Submit</button> */}
+                    <Button variant="outlined" type='submit'>Submit</Button>
                   </form>
                 </li>
                 )
@@ -121,9 +118,6 @@ function Home() {
                     {event.id}  = {event.address}
                     <Button variant="contained" onClick={()=>toggleEdit(event)}>Edit</Button>
                     <Button variant="contained" onClick={()=>handleDelete(event.id)}>Delete</Button>
-
-                    {/* <button onClick={()=>toggleEdit(event)}>Edit</button>
-                    <button onClick={()=>handleDelete(event.id)}>Delete</button> */}
                   </li>
                 )
               }
