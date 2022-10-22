@@ -6,7 +6,7 @@ import '../App.css';
 const baseUrl="http://localhost:5000"
 
 
-function Reports() {
+function Movements() {
   const[eventsList, setEventsList]=useState([]);
 
   const fetchEvents=async()=>{
@@ -55,4 +55,4 @@ function Reports() {
   );
 }
 
-export default Reports;
+export default Movements;

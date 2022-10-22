@@ -3,8 +3,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Reports from './pages/Reports';
-import Products from './pages/Products';
+import Movements from './pages/Movements';
+import Population from './pages/Population';
 import Map from './pages/Map';
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
         <Routes>
           {/* <Route path='/' exact component={Home} /> */}
           <Route path='/' element={<Home/>} />
-          <Route path='/reports' element={<Reports/>} />
-          <Route path='/products' element={<Products/>} />
+          <Route path='/movements' element={<Movements/>} />
+          <Route path='/population' element={<Population/>} />
           <Route path='/map' element={<Map/>} />
         </Routes>
       </Router>

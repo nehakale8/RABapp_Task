@@ -4,6 +4,7 @@ import React from 'react';
 import {useEffect, useState} from "react";
 import axios from "axios"
 import {format} from "date-fns";
+import Button from '@mui/material/Button';
 
 // import './App.css';
 
@@ -89,7 +90,8 @@ function Home() {
             value={address}
             placeholder="Address of event"
           />
-          <button type='submit'>Submit</button>
+          <Button variant="contained" type='submit'>Submit</Button>
+          {/* <button type='submit'>Submit</button> */}
         </form>
       </section>
       <section>
@@ -107,7 +109,8 @@ function Home() {
                       id="editAddress"
                       value={editAddress}
                     />
-                    <button type="submit">Submit</button>
+                    <Button variant="contained" type='submit'>Submit</Button>
+                    {/* <button type="submit">Submit</button> */}
                   </form>
                 </li>
                 )
@@ -116,8 +119,11 @@ function Home() {
                 return(
                   <li style={{display:"flex"}} key={event.id}>
                     {event.id}  = {event.address}
-                    <button onClick={()=>toggleEdit(event)}>Edit</button>
-                    <button onClick={()=>handleDelete(event.id)}>Delete</button>
+                    <Button variant="contained" onClick={()=>toggleEdit(event)}>Edit</Button>
+                    <Button variant="contained" onClick={()=>handleDelete(event.id)}>Delete</Button>
+
+                    {/* <button onClick={()=>toggleEdit(event)}>Edit</button>
+                    <button onClick={()=>handleDelete(event.id)}>Delete</button> */}
                   </li>
                 )
               }

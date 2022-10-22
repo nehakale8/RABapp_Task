@@ -6,7 +6,7 @@ import '../App.css';
 const baseUrl="http://localhost:5000"
 
 
-function Products() {
+function Population() {
   const[eventsList, setEventsList]=useState([]);
 
   const fetchEvents=async()=>{
@@ -57,4 +57,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Population;

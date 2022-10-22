@@ -30,8 +30,23 @@ class Movements(db.Model):
     def __repr__(self) -> str:
         return f"Movements: {self.id}"
 
-    # def __init__(self, description) -> None:
-    #     self.description = description
+    def __init__(
+        self,
+        company,
+        reason,
+        species,
+        origin_premise_id,
+        dest_premise_id,
+        moved_count,
+        start_date,
+    ) -> None:
+        self.company = company
+        self.reason = reason
+        self.species = species
+        self.origin_premise_id = origin_premise_id
+        self.dest_premise_id = dest_premise_id
+        self.moved_count = moved_count
+        self.start_date = start_date
 
 
 class Population(db.Model):
@@ -55,7 +70,18 @@ class Population(db.Model):
 
 
 def format_popu(event):
-    return {"id": event.id, "address": event.address}
+    return {
+        "id": event.id,
+        "address": event.address,
+        "city": event.city,
+        "name": event.name,
+        "state": event.state,
+        "lat": event.lat,
+        "lon": event.lon,
+        "premise_id": event.premise_id,
+        "postalcode": event.postalcode,
+        "total_animal_count": event.total_animal_count,
+    }
 
 
 def format_move(event):
@@ -132,6 +158,30 @@ def get_movements():
     for event in events:
         event_list.append(format_move(event))
     return {"events": event_list}
+
+
+# create an event
+@app.route("/movements", methods=["POST"])
+def create_movement():
+    company = request.json["company"]
+    reason = request.json["reason"]
+    species = request.json["species"]
+    origin_premise_id = request.json["origin_premise_id"]
+    dest_premise_id = request.json["dest_premise_id"]
+    moved_count = request.json["moved_count"]
+    start_date = request.json["start_date"]
+    event = Movements(
+        company,
+        reason,
+        species,
+        origin_premise_id,
+        dest_premise_id,
+        moved_count,
+        start_date,
+    )
+    db.session.add(event)
+    db.session.commit()
+    return format_popu(event)
 
 
 if __name__ == "__main__":
