@@ -25,13 +25,13 @@ The Application is a single-page web application and all activities are asynchro
 1. **Python**:
 - For the backend, Python is required to be installed on the system.
 - Installation link is available [here](https://www.python.org/downloads/)<br />
-- To check if Java has been installed correctly on the system, run the following command on cmd. <br />
+- To check if Python has been installed correctly on the system, run the following command on cmd. <br />
     ```console
     python --version
     ```
 
 2. **PostgreSQL**:
-- PostgreSQL needs to be installed on the system to run the script file provided [here](https://github.com/nehakale88/). <br />
+- PostgreSQL needs to be installed on the system to run the script file provided [here](https://github.com/nehakale8/RABapp_Task/blob/master/db-scripts.psql). <br />
 - Installation link is available [here](https://www.postgresql.org/download/). <br />
 - Additionally, add the path of bin folder to the ```PATH``` environment variable. <br />
 - To check if PostgreSQL has been installed correctly on the system, run the following command on cmd. <br />
