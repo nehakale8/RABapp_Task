@@ -4,10 +4,10 @@ Challenge Link : (https://github.com/machado-lab/programming-challenge)
 Hi! This is a single-page Web Application developed to view the population and movement of animal species.
 
 **Technologies Used :** 
-Backend: Flask
-SPA Web Client Framework: Reactjs
-Frontend: HTML, CSS, Javascript, JavaScript XML
-Relational database: PostgreSQL
+- Backend: Flask
+- SPA Web Client Framework: Reactjs
+- Frontend: HTML, CSS, Javascript, JavaScript XML
+- Relational database: PostgreSQL
 
 ## About the Application
 The Application is a single-page web application and all activities are asynchronously performed, ie. the whole page is not refreshed/reloaded. Following are the main activities:
@@ -19,45 +19,20 @@ The Application is a single-page web application and all activities are asynchro
 - List of all movement records is loaded in a table which shows all movement related details.
 - Details include: Company Name, Species, Reason, Moved Count, Start Date, Origin Premise Id & Destination Premise Id.
 - A provision to add a movement record is provided within the component, which adds a row within the grid (without reloading the webpage or the whole grid).
+- Upon adding a new movement record, the population data also gets updated accordingly.
 
 ## Pre-Requisites
 1. **Python**:
 - For the backend, Python is required to be installed on the system.
-- Installation link is available [here](#resources-used) in **Backend/Java Springboot** section. <br />
-- Ensure that the ```JAVA_HOME``` environment variable is configured. <br />
+- Installation link is available [here](https://www.python.org/downloads/)<br />
 - To check if Java has been installed correctly on the system, run the following command on cmd. <br />
     ```console
     python --version
     ```
-2. **Maven**:
-- Maven needs to be installed to run the command which would publish the web application on localhost. <br />
-- Installation link is available [here](#resources-used) in **Backend/Java Springboot** section. <br />
-- You can download the zip file, unzip it and paste it in the Program Files folder. <br />
-- Additionally, add the path of bin folder to the ```PATH``` environment variable. <br />
-- To check if Maven has been installed correctly on the system, run the following command on cmd. <br />
-    ```console
-    mvn -v
-    ```    
-3. **Node.js**:
-- Node.js needs to be installed to run the Angular application on the system. <br />
-- Installation link is available [here](#resources-used) in **Frontend/Node.js** section. <br />
-- To check if Node.js has been installed correctly on the system, run the following command on cmd. <br />
-    ```console
-    node -v
-    npm -v
-    ```
-- Along with Node.js, Angular CLI needs to be installed as well. <br />
-- To install Angular CLI, run the following command in cmd (After installation of Node and NPM). <br />
-    ```console
-    npm install -g @angular/cli
-    ```
-- To check if CLI has been installed correctly on the system, run the following command on cmd. <br />
-    ```console
-    ng v
-    ```
-4. **PostgreSQL**:
-- PostgreSQL needs to be installed on the system to run the script file provided [here](https://github.com/rishikesh-yelne/ProgrammingChallenge/blob/master/db-scripts.psql). <br />
-- Installation link is available [here](#resources-used) in **Backend/PostgreSQL** section. <br />
+
+2. **PostgreSQL**:
+- PostgreSQL needs to be installed on the system to run the script file provided [here](https://github.com/nehakale88/). <br />
+- Installation link is available [here](https://www.postgresql.org/download/). <br />
 - Additionally, add the path of bin folder to the ```PATH``` environment variable. <br />
 - To check if PostgreSQL has been installed correctly on the system, run the following command on cmd. <br />
     ```console
@@ -70,26 +45,20 @@ The Application is a single-page web application and all activities are asynchro
 > **Please note**: You might be prompted to provide the password for postgres user in cmd to execute the script.
 
 > **Please note**: Replace <Local_Repo_Location> with the file path at which this GitHub repository has been cloned.
-- Before running the application, modify the [application.properties](https://github.com/rishikesh-yelne/ProgrammingChallenge/blob/master/prog-challenge-backend-java/src/main/resources/application.properties) file with the password configured for ```postgres``` username
-```.properties
-...
-spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
-spring.datasource.username=postgres
-spring.datasource.password=postgres //modify the password here
-...
-```   
+
 
 ## Run the application
 To run the application, following commands are required to be executed
 ```console
-cd <Local_Repo_Location>/ProgrammingChallenge/prog-challenge-backend-java
-mvnw spring-boot:run
+cd <Local_Repo_Location>/RABapp_Task/backend
+flask run
 ```
 After the backend is up and running
 ```console
-cd <Local_Repo_Location>/ProgrammingChallenge/prog-challege-frontend-angular
+cd <Local_Repo_Location>/RABapp_Task/frontend
 npm install
-ng serve --open
+npm i axios
+npm start
 ```
 > **Please note**: Replace <Local_Repo_Location> with the file path at which this GitHub repository has been cloned.
 
