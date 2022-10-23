@@ -39,7 +39,7 @@ function Population() {
         </thead>
         <tbody>
           {eventsList.map((event)=>(
-            <tr>
+            <tr key={event.id}>
               <td>{event.name}</td>
               <td>{event.address}</td>
               <td>{event.city}</td>

@@ -140,12 +140,13 @@ def delete_event(id):
     return f"Event {id:{id}} deleted!"
 
 
-# edit event
-@app.route("/events/<id>", methods=["PUT"])
-def edit_event(id):
-    event = Population.query.filter_by(id=id)
-    address = request.json["address"]
-    event.update(dict(address=address))
+# edit total_animal_count in population table
+@app.route("/events/<premise_id>", methods=["PUT"])
+def edit_event(premise_id):
+    event = Population.query.filter_by(premise_id=premise_id)
+    event1=event.first()
+    count = int(request.json["count"])+event1.total_animal_count
+    event.update(dict(total_animal_count=count))
     db.session.commit()
     return {"event": format_popu(event.one())}
 
@@ -181,7 +182,7 @@ def create_movement():
     )
     db.session.add(event)
     db.session.commit()
-    return format_popu(event)
+    return format_move(event)
 
 
 if __name__ == "__main__":
