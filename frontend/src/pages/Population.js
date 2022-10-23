@@ -22,7 +22,7 @@ function Population() {
 
   return (
     <div className='app-container'>
-      <h3>Population data</h3>
+      <h1>Population data</h1>
       <table>
         <thead>
           <tr>

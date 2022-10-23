@@ -14,10 +14,10 @@ function App() {
         <Navbar />
         <Routes>
           {/* <Route path='/' exact component={Home} /> */}
-          <Route path='/' element={<Home/>} />
-          <Route path='/movements' element={<Movements/>} />
+          {/* <Route path='/' element={<Home/>} /> */}
+          <Route path='/' element={<Movements/>} />
           <Route path='/population' element={<Population/>} />
-          <Route path='/map' element={<Map/>} />
+          {/* <Route path='/map' element={<Map/>} /> */}
         </Routes>
       </Router>
     </>

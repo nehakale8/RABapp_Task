@@ -1,3 +1,10 @@
-node
+node==16.18.0
 axios
 date-fns
+flask==2.2.2
+flask-cors==3.0.10
+python-dotenv==0.21.0
+flask-sqlalchemy==3.0.0
+psycopg2==2.9.3
+pytest==7.1.3
+pytest-mock==3.10.0

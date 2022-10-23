@@ -103,7 +103,7 @@ function Movements() {
 
   return (
     <div className='app-container'>
-      <h3>Movements data</h3>
+      <h1>Movements data</h1>
 
       {/* dialog material ui */}
       <div>
